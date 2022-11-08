@@ -19,7 +19,7 @@ const Program = () => {
       .catch(error => {
         console.log(error.message);
       });
-  }, []);
+  });
 
   const deleteProgram = () => {
     axios.delete(API_URL + `programs/delete/${programId}`)
