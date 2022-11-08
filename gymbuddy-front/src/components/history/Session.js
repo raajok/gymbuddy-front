@@ -1,11 +1,12 @@
 import React from 'react';
 import "./session.css";
 import axios from "axios";
+import { API_URL } from '../../utils/constants';
 
 const Session = ( props ) => {
 
   const handleRemove = () => {
-    axios.delete(`http://localhost:9000/api/delete/${props.training["_id"]}`)
+    axios.delete(API_URL + `delete/${props.training["_id"]}`)
       .then(res => {
         console.log(res.data);
       })

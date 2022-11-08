@@ -3,6 +3,7 @@ import './programform.css';
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { API_URL } from '../../utils/constants';
 
 const ProgramForm = (props) => {
   const [values, setValues] = React.useState({
@@ -83,7 +84,7 @@ const ProgramForm = (props) => {
       deletable: true,
     };
 
-    axios.post('http://localhost:9000/api/programs', dataToSubmit)
+    axios.post(API_URL + 'programs', dataToSubmit)
       .then(res => {
         console.log(res);
       })

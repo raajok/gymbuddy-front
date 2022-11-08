@@ -3,6 +3,7 @@ import axios from "axios";
 import ProgramCard from './ProgramCard';
 import ProgramForm from './ProgramForm';
 import './programs.css';
+import { API_URL } from '../../utils/constants';
 
 const Programs = () => {
   const [programs, setPrograms] = React.useState([]);
@@ -22,7 +23,7 @@ const Programs = () => {
   }, [activeProgram]);
 
   const getPrograms = () => {
-    axios.get('http://localhost:9000/api/programs')
+    axios.get(API_URL+'programs')
       .then(res => {
         setPrograms(res.data);
       })

@@ -3,6 +3,7 @@ import axios from "axios";
 import Select from "react-select";
 import TrainingForm from "./TrainingForm";
 import "./training.css";
+import { API_URL } from "../../utils/constants";
 
 const Training = () => {
   const [program, setProgram] = React.useState({});
@@ -14,7 +15,7 @@ const Training = () => {
   React.useEffect(() => {
     const active = JSON.parse(localStorage.getItem('activeProgram'));
     if (active) {
-      axios.get(`http://localhost:9000/api/programs/${active}`)
+      axios.get(API_URL + `programs/${active}`)
         .then(res => {
           setProgram(res.data);
           let optionsArray = [];
@@ -95,7 +96,7 @@ const Training = () => {
       movements: movements
     };
 
-    axios.post('http://localhost:9000/api/', dataToSubmit)
+    axios.post(API_URL, dataToSubmit)
       .then(res => {
         console.log(res);
       })

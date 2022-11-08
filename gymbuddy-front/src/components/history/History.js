@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import Session from "./Session";
 import "./history.css";
+import { API_URL } from '../../utils/constants';
 
 const History = () => {
   const [trainings, setTrainings] = React.useState([]);
@@ -11,7 +12,7 @@ const History = () => {
   }, [trainings]);
 
   const handleTrainings = () => {
-    axios.get(`http://localhost:9000/api/`)
+    axios.get(API_URL)
       .then(res => {
         setTrainings(res.data.reverse());
       })

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './program.css';
 import ProgramTable from './ProgramTable';
+import { API_URL } from '../../utils/constants';
 
 const Program = () => {
   const [program, setProgram] = React.useState({});
@@ -11,7 +12,7 @@ const Program = () => {
   let navigate = useNavigate();
 
   React.useEffect(() => {
-    axios.get(`http://localhost:9000/api/programs/${programId}`)
+    axios.get(API_URL + `programs/${programId}`)
       .then(res => {
         setProgram(res.data);
       })
@@ -21,7 +22,7 @@ const Program = () => {
   }, []);
 
   const deleteProgram = () => {
-    axios.delete(`http://localhost:9000/api/programs/delete/${programId}`)
+    axios.delete(API_URL + `programs/delete/${programId}`)
       .then(res => {
         console.log(res.data);
       })
