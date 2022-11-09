@@ -5,6 +5,8 @@
   gap: 2rem;
   padding: 0 1rem;
   color: white;
+  height: 10vh;
+  min-width: 600px;
 }
 
 .navbar ul {

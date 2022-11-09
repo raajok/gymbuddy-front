@@ -25,12 +25,11 @@ const Program = () => {
     axios.delete(API_URL + `programs/delete/${programId}`)
       .then(res => {
         console.log(res.data);
+        navigate(-1);
       })
       .catch(error => {
         console.log(error.message);
       });
-
-    navigate(-1);
   };
 
   return (

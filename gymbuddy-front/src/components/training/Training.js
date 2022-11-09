@@ -108,15 +108,17 @@ const Training = () => {
   };
 
   return (
-    <div className="training">
-      {submitted ? <h1>Your training has been saved!</h1> :
-        <div>
-          {!program.days && <h1>Set an active program from the Programs page!</h1>}
-          <h1>{program.title}</h1>
-          {renderSelect()}
-          {renderForm()}
-        </div>
-      }
+    <div className="training-wrapper">
+      <div className="training-content">
+        {submitted ? <h1>Your training has been saved!</h1> :
+          <div>
+            {!program.days && <h1>Set an active program from the Programs page!</h1>}
+            <h1>{program.title}</h1>
+            {renderSelect()}
+            {renderForm()}
+          </div>
+        }
+      </div>
     </div>
   );
 };

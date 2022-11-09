@@ -1,5 +1,13 @@
-.training {
+.training-wrapper {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.training-content {
+  padding-top: 5vh;
 }
 
 .select {
