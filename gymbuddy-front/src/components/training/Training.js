@@ -4,6 +4,7 @@ import Select from "react-select";
 import TrainingForm from "./TrainingForm";
 import "./training.css";
 import { API_URL } from "../../utils/constants";
+import LoadingSpinner from "../LoadingSpinner";
 
 const Training = () => {
   const [program, setProgram] = React.useState({});
@@ -11,10 +12,12 @@ const Training = () => {
   const [day, setDay] = React.useState({});
   const [selectedDay, setSelectedDay] = React.useState("Day 1");
   const [submitted, setSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   
   React.useEffect(() => {
     const active = JSON.parse(localStorage.getItem('activeProgram'));
     if (active) {
+      setIsLoading(true);
       axios.get(API_URL + `programs/${active}`)
         .then(res => {
           setProgram(res.data);
@@ -24,8 +27,10 @@ const Training = () => {
             optionsArray.push({ value: (i - 1), label: `Day ${i}` });
           }
           setOptions(optionsArray);
+          setIsLoading(false);
         })
         .catch(error => {
+          setIsLoading(false);
           console.log(error.message);
         });
     }
@@ -59,8 +64,6 @@ const Training = () => {
     setDay(program.days[selectedOption.value]);
     setSelectedDay(selectedOption.label);
   };
-
-  // Submitatessa ei tule inputeista mitään infoa tietokantaan.
 
   // submit function for TrainingForm
   const submit = (event, inputValues) => {
@@ -109,16 +112,18 @@ const Training = () => {
 
   return (
     <div className="training-wrapper">
-      <div className="training-content">
-        {submitted ? <h1>Your training has been saved!</h1> :
-          <div>
-            {!program.days && <h1>Set an active program from the Programs page!</h1>}
-            <h1>{program.title}</h1>
-            {renderSelect()}
-            {renderForm()}
-          </div>
-        }
-      </div>
+      {isLoading ? <LoadingSpinner /> : 
+        <div className="training-content">
+          {submitted ? <h1>Your training has been saved!</h1> :
+            <div>
+              {!program.days && <h1>Set an active program from the Programs page!</h1>}
+              <h1>{program.title}</h1>
+              {renderSelect()}
+              {renderForm()}
+            </div>
+          }
+        </div>
+      }
     </div>
   );
 };

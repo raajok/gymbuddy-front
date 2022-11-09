@@ -9,12 +9,11 @@ const Session = ( props ) => {
     axios.delete(API_URL + `delete/${props.training["_id"]}`)
       .then(res => {
         console.log(res.data);
+        props.handleTrainings();
       })
       .catch(error => {
         console.log(error.message);
       });
-
-    props.handleTrainings();
   };
 
   return (
